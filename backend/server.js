@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
 import userRoutes from './routes/userRoutes.js'
+import habitRoutes from './routes/habitRoutes.js'
 import connectDB from './config/db.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 
@@ -19,6 +20,7 @@ app.use(express.json())
 
 
 app.use('/api/users', userRoutes)
+app.use('/api/habits', habitRoutes)
 
 //Error middleware , middleware has access to the req res cycle
 app.use(notFound)

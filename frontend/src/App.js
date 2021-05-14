@@ -10,7 +10,7 @@ const App = () => {
    <main className="py-4">
      <Container>
 
-    <h1>this is the main</h1>
+    <h1>Get 1% Better Each Day</h1>
 
      </Container>
    </main>
