@@ -7,7 +7,7 @@ import {USER_LOGIN_REQUEST, USER_LOGIN_FAIL, USER_LOGOUT, USER_LOGIN_SUCCESS,USE
 export const login =(email, password)=> async (dispatch)=>{
     try {
         dispatch({
-            type: USER_LOGIN_REQUEST
+            type: USER_LOGIN_REQUEST,
         })
         const config={
             headers:{
@@ -16,7 +16,7 @@ export const login =(email, password)=> async (dispatch)=>{
         }
 
         const {data} = await axios.post(
-            'api/users/login',
+            '/api/users/login',
             {email, password}, config
         )
         dispatch({
