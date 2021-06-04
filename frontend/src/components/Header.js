@@ -21,7 +21,8 @@ const dispatch = useDispatch()
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                    <Nav.Link href="#home">About Us</Nav.Link>
+                    <Nav.Link href="/habits">My Habits</Nav.Link>
+                    <Nav.Link href="/about">About Us</Nav.Link>
                     {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>

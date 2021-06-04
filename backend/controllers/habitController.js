@@ -1,68 +1,27 @@
 import asyncHandler from 'express-async-handler'
-import generateToken from '../utils/generateToken.js'
+
 import Habit from '../models/habitModel.js'
 
 
 
 
 
-//desc create new habit
-//routre POST api/habit
-//access Private
-
-
-const registerUser = asyncHandler( async(req, res)=>{
-
-    const {name, email, password} = req.body
-    const userExists = await User.findOne({email})
-
-    if(userExists){
-        res.status(400)
-        throw new Error('user already exists')
-    }
-    const user= await User.create({
-        name,
-        email,
-        password
+// @desc    Create a habit
+// @route   POST /api/habits
+// @access  Private/User
+const createHabit = asyncHandler(async (req, res) => {
+    const habit = new Habit({
+      name: 'Sample habit',
+      category: "Sample Category",
+      user: req.user._id,
+      brand: 'Sample brand',
+      progress: 1,
+      poshabit: true ,
+      frequency: "daily",
     })
-    if(user){
-        res.status(201).json({
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),
-        })
-    }else{
-        res.status(400)
-        throw new Error('Invalid Data')
-    }
- 
-})
-//desc AUth users
-//routre POST api/users
-//access Public
+  
+    const createdHabit = await habit.save()
+    res.status(201).json(createdHabit)
+  })
 
-
-const authUser = asyncHandler( async(req, res)=>{
-
-    const {email, password} = req.body
-    const user = await User.findOne({email})
-
-    if(user &&( await user.matchPassword(password)) ){
-        res.json({
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),
-        })
-    }else {
-        res.status(401)
-        throw new Error('invalid email or password')
-    }
-})
-
-const getUserProfile = asyncHandler( async(req,res)=>{
-    res.send('success')
-})
-
-export {authUser, getUserProfile, registerUser}
+export {createHabit}

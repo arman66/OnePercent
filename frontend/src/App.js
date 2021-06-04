@@ -5,13 +5,18 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Login from './screens/Login'
 import Register from './screens/Register'
+import Home from './screens/Home'
+
+
 
 const App = () => {
   return (
    <Router>
    <Header/>
+   
    <main className="py-4">
      <Container>
+     <Route exact path='/' component={Home} />
      <Route path='/login' component={Login} />
     <Route path='/register' component={Register} />
     

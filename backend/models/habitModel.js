@@ -30,6 +30,7 @@ const habitSchema = new mongoose.Schema({
     poshabit:{
         type: Boolean,
         required: true,
+        default: true,
     },
     
    
