@@ -1,5 +1,4 @@
 import asyncHandler from 'express-async-handler'
-
 import Habit from '../models/habitModel.js'
 
 
@@ -18,13 +17,15 @@ const getHabits = asyncHandler(async (req, res) => {
 // @route   POST /api/habits
 // @access  Private/User
 const createHabit = asyncHandler(async (req, res) => {
+
   const habit = new Habit({
-    name: 'Sample habit',
     user: req.user._id,
-    category: "Sample Category",
-    progress: 1,
-    poshabit: true,
-    frequency: "daily",
+    name: req.body.name,
+    category: req.body.category,
+    progress: req.body.progress,
+    poshabit: req.body.poshabit,
+    frequency: req.body.frequency
+
   })
 
   const createdHabit = await habit.save()
@@ -34,22 +35,25 @@ const createHabit = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateHabit = asyncHandler(async (req, res) => {
+  
   const {
     name,
     category,
+    frequency,
     progress,
-    poshabit,
-    frecuency,
+    poshabit
 
   } = req.body
 
   const habit = await Habit.findById(req.params.id)
-
+   
   if (habit) {
     habit.name = name
+    habit.category = category
+    habit.frequency = frequency
     habit.progress = progress
     habit.poshabit = poshabit
-    habit.frecuency = frecuency
+
 
     const updatedHabit = await habit.save()
     res.json(updatedHabit)

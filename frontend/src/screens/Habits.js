@@ -63,7 +63,7 @@ const Habits = ({location, history}) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId='progress'>
-          <Form.Label>HAbit frecuency</Form.Label>
+          <Form.Label>HAbit progress</Form.Label>
           <Form.Control
             type='number'
             placeholder='progress'
@@ -72,7 +72,7 @@ const Habits = ({location, history}) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId='positive habit'>
-          <Form.Label>HAbit frecuency</Form.Label>
+          <Form.Label>HAbit positive habit</Form.Label>
           <Form.Control
             type='number'
             placeholder='positive habit'

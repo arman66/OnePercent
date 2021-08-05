@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
         required: true,
 
     },
+    habits:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Habit"
+    }]
    
 },{
     timestamps: true
