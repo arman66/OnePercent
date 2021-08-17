@@ -23,7 +23,6 @@ const createHabit = asyncHandler(async (req, res) => {
     name: req.body.name,
     category: req.body.category,
     progress: req.body.progress,
-    poshabit: req.body.poshabit,
     frequency: req.body.frequency
 
   })

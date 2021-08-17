@@ -4,7 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 
 
 import{userLoginReducer, userRegisterReducer} from './reducers/userReducers'
-import { habitListReducer } from './reducers/habitReducers'
+import { habitListReducer,habitCreateReducer,habitUpdateReducer } from './reducers/habitReducers'
 
 
 
@@ -13,7 +13,9 @@ import { habitListReducer } from './reducers/habitReducers'
 const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
-    habitList: habitListReducer
+    habitList: habitListReducer,
+    habitCreate:habitCreateReducer,
+    habitUpdate: habitUpdateReducer
 })
 
 

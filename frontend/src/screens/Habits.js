@@ -2,19 +2,23 @@ import React, { useState, useEffect } from 'react'
 import FormContainer from '../components/FormContainer'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { createHabit} from '../actions/habitActions'
 
 const Habits = ({location, history}) => {
 
-    const [habit, setHabit]= useState('')
+    const [name, setName]= useState('')
     const [category, setCategory]= useState('')
-    const [frecuency, setFrecuency]= useState('')
+    const [frequency, setFrequency]= useState('')
     const [progress, setProgress]= useState('')
-    const [posHabit, setPosHabit]= useState('')
+
+
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
+
+    const dispatch= useDispatch()
 
     useEffect(() => {
       if (userInfo) {
@@ -24,6 +28,10 @@ const Habits = ({location, history}) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
+        dispatch(createHabit(
+          name, category, frequency, progress
+        ))
+        
       }
     return (
 
@@ -39,8 +47,8 @@ const Habits = ({location, history}) => {
           <Form.Control
             type='text'
             placeholder='name'
-            value={habit}
-            onChange={(e) => setHabit(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -54,34 +62,26 @@ const Habits = ({location, history}) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId='frecuency'>
-          <Form.Label>HAbit frecuency</Form.Label>
+          <Form.Label>HAbit frequency</Form.Label>
           <Form.Control
             type='text'
             placeholder='freceuncy'
-            value={frecuency}
-            onChange={(e) => setFrecuency(e.target.value)}
+            value={frequency}
+            onChange={(e) => setFrequency(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId='progress'>
           <Form.Label>HAbit progress</Form.Label>
           <Form.Control
-            type='number'
+            type='text'
             placeholder='progress'
             value={progress}
             onChange={(e) => setProgress(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group controlId='positive habit'>
-          <Form.Label>HAbit positive habit</Form.Label>
-          <Form.Control
-            type='number'
-            placeholder='positive habit'
-            value={posHabit}
-            onChange={(e) => setPosHabit(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+  
 
-        <Button type='submit' variant='primary'>
+        <Button type ='submit' variant='primary'>
           Add Habit
         </Button>
       </Form>

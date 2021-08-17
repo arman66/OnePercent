@@ -23,14 +23,13 @@ const habitSchema = new mongoose.Schema({
             required: true,
         },
         progress: {
-            type: Number,
+            type: String,
             required: true,
-            default: 1
+           
 
         },
         poshabit: {
             type: Boolean,
-            required: true,
             default: true,
         },
    
